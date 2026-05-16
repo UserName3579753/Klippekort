@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
@@ -117,6 +118,7 @@
     .sync-dot.err { background: var(--red); }
     @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
   </style>
+
 </head>
 <body>
 <div id="app">
@@ -163,6 +165,7 @@
 </div>
 
 <!-- Edit Modal -->
+
 <div class="modal-overlay hidden" id="edit-modal" onclick="closeEditModal(event)">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-title">✏️ Redigér transaktion</div>
@@ -182,7 +185,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, set, get, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, set, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCzQdun-gec-pHwEqmAVU7Z-QfrZ3f43zY",
@@ -243,31 +246,6 @@ async function fbSaveGyms(g) {
   catch(e) { console.error(e); setSyncDot('err'); }
 }
 
-// ── Migration fra localStorage ────────────────────────────────────────────
-async function migrateFromLocalStorage() {
-  try {
-    const oldTx = localStorage.getItem('bk_transactions');
-    const oldGyms = localStorage.getItem('bk_gyms');
-    if (!oldTx && !oldGyms) return;
-    const txArr = oldTx ? JSON.parse(oldTx) : [];
-    const gymArr = oldGyms ? JSON.parse(oldGyms) : [];
-    if (txArr.length === 0 && gymArr.length === 0) return;
-    const snap = await get(ref(db, 'transactions'));
-    if (snap.exists()) return;
-    if (confirm(`Vi har fundet ${txArr.length} gamle transaktioner på denne enhed.\nVil du flytte dem til Firebase nu?`)) {
-      for (const tx of txArr) {
-        if (!tx.id) tx.id = uid();
-        await set(ref(db, `transactions/${tx.id}`), tx);
-      }
-      if (gymArr.length > 0) await set(ref(db, 'gyms'), gymArr);
-      localStorage.removeItem('bk_transactions');
-      localStorage.removeItem('bk_gyms');
-      localStorage.removeItem('bk_last_backup');
-      alert('✓ Dine gamle data er nu flyttet til Firebase!');
-    }
-  } catch(e) { console.error('Migration error:', e); }
-}
-
 // ── Realtime listener ─────────────────────────────────────────────────────
 function startListening() {
   onValue(ref(db, 'transactions'), (snap) => {
@@ -281,11 +259,8 @@ function startListening() {
 }
 
 // ── Boot ──────────────────────────────────────────────────────────────────
-(async () => {
-  setSyncDot('syncing');
-  await migrateFromLocalStorage();
-  startListening();
-})();
+setSyncDot('syncing');
+startListening();
 
 // ── Router ────────────────────────────────────────────────────────────────
 window.navigate = (view) => { currentView = view; render(); };
@@ -470,13 +445,6 @@ function renderSettings() {
         <button class="gym-add-btn" onclick="addGym()">+</button>
       </div>
     </div>
-    <div class="card">
-      <div class="section-label">Sikkerhedskopi</div>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">
-        Dine data er gemt sikkert i Firebase. Du kan også downloade en lokal backup.
-      </p>
-      <button class="btn btn-primary" onclick="exportData()">⬇️ Download backup</button>
-    </div>
   </div>`;
 }
 
@@ -487,14 +455,7 @@ window.addGym = async () => {
   await fbSaveGyms([...gyms, name]);
 };
 window.removeGym = async (name) => { await fbSaveGyms(gyms.filter(g => g !== name)); };
-window.exportData = () => {
-  const data = { transactions, gyms, exportedAt: new Date().toISOString() };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'klippekort-backup.json'; a.click();
-  URL.revokeObjectURL(url);
-};
 </script>
+
 </body>
 </html>
