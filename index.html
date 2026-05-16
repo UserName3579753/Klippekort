@@ -7,59 +7,26 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Klippekort" />
   <title>Klippekort</title>
-
-  <!-- Apple Touch Icon -->
   <link rel="apple-touch-icon" href="icon.png" />
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 
     :root {
-      --blue-dark: #1e3a5f;
-      --blue-main: #1e6fbf;
-      --blue-mid: #3b9edd;
-      --blue-light: #c9ddf5;
-      --blue-bg: #e8f1fb;
-      --blue-pale: #f4f8ff;
-      --bg: #f8faff;
-      --white: #ffffff;
-      --text: #1e3a5f;
-      --muted: #64748b;
-      --subtle: #94a3b8;
-      --border: #f1f5f9;
-      --purple: #7c3aed;
-      --green: #22c55e;
-      --red: #ef4444;
-      --amber: #f59e0b;
+      --blue-dark: #1e3a5f; --blue-main: #1e6fbf; --blue-mid: #3b9edd;
+      --blue-light: #c9ddf5; --blue-bg: #e8f1fb; --blue-pale: #f4f8ff;
+      --bg: #f8faff; --white: #ffffff; --text: #1e3a5f;
+      --muted: #64748b; --subtle: #94a3b8; --border: #f1f5f9;
+      --purple: #7c3aed; --green: #22c55e; --red: #ef4444;
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-    body {
-      font-family: 'Lora', Georgia, serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      min-height: -webkit-fill-available;
-      overscroll-behavior: none;
-    }
-
-    /* ── Layout ── */
+    body { font-family: 'Lora', Georgia, serif; background: var(--bg); color: var(--text); min-height: 100vh; min-height: -webkit-fill-available; overscroll-behavior: none; }
     #app { display: flex; flex-direction: column; min-height: 100vh; min-height: -webkit-fill-available; }
 
-    header {
-      background: var(--white);
-      border-bottom: 1.5px solid var(--blue-bg);
-      position: sticky; top: 0; z-index: 50;
-      padding-top: var(--safe-top);
-    }
-    .header-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 20px;
-      max-width: 520px; margin: 0 auto;
-    }
+    header { background: var(--white); border-bottom: 1.5px solid var(--blue-bg); position: sticky; top: 0; z-index: 50; padding-top: var(--safe-top); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; max-width: 520px; margin: 0 auto; }
     .header-logo { display: flex; align-items: center; gap: 10px; }
     .header-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--blue-dark); }
     .header-sub { font-size: 10px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; }
@@ -68,174 +35,87 @@
     .header-balance-num.low { color: var(--red); }
     .header-balance-label { font-size: 11px; color: var(--muted); }
 
-    main {
-      flex: 1;
-      padding: 16px;
-      padding-bottom: calc(16px + var(--safe-bottom));
-      max-width: 520px;
-      width: 100%;
-      margin: 0 auto;
-      display: flex; flex-direction: column; gap: 14px;
-    }
+    main { flex: 1; padding: 16px; padding-bottom: calc(16px + var(--safe-bottom)); max-width: 520px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
 
-    /* ── Cards ── */
-    .card {
-      background: var(--white);
-      border-radius: 18px;
-      box-shadow: 0 2px 20px rgba(30,111,191,0.08);
-      padding: 22px 20px;
-    }
-    .card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px; font-weight: 700; color: var(--blue-main);
-      margin-bottom: 18px;
-    }
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 10px;
-    }
+    .card { background: var(--white); border-radius: 18px; box-shadow: 0 2px 20px rgba(30,111,191,0.08); padding: 22px 20px; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--blue-main); margin-bottom: 18px; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
 
-    /* ── Hero balance ── */
-    .hero {
-      background: linear-gradient(135deg, var(--blue-main) 0%, var(--blue-mid) 100%);
-      color: white; text-align: center; padding: 32px 20px;
-      border-radius: 20px;
-    }
+    .hero { background: linear-gradient(135deg, var(--blue-main) 0%, var(--blue-mid) 100%); color: white; text-align: center; padding: 32px 20px; border-radius: 20px; }
     .hero-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; margin-bottom: 6px; }
     .hero-num { font-family: 'Playfair Display', serif; font-size: 80px; font-weight: 900; line-height: 1; }
     .hero-sub { font-size: 16px; opacity: 0.85; margin-top: 4px; }
     .hero-warn { margin-top: 14px; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 8px 14px; font-size: 13px; font-weight: 600; }
 
-    /* ── Nav grid ── */
     .nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .nav-btn {
-      background: var(--white);
-      border: 1.5px solid var(--blue-light);
-      border-radius: 14px; padding: 18px 14px;
-      text-align: left; cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
-      font-family: 'Lora', Georgia, serif;
-      display: flex; flex-direction: column; gap: 4px;
-    }
+    .nav-btn { background: var(--white); border: 1.5px solid var(--blue-light); border-radius: 14px; padding: 18px 14px; text-align: left; cursor: pointer; font-family: 'Lora', Georgia, serif; display: flex; flex-direction: column; gap: 4px; }
     .nav-btn:active { background: var(--blue-pale); border-color: var(--blue-main); }
     .nav-btn-label { font-size: 15px; font-weight: 600; color: var(--blue-dark); }
     .nav-btn-desc { font-size: 11px; color: var(--muted); }
 
-    /* ── Recent ── */
-    .tx-row {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      padding: 10px 0; border-bottom: 1px solid var(--border);
-    }
+    .tx-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); }
     .tx-row:last-child { border-bottom: none; }
     .tx-meta { flex: 1; }
-    .tx-top { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+    .tx-date { font-size: 13px; font-weight: 700; color: var(--blue-main); margin-bottom: 4px; }
+    .tx-top { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
     .tx-gym { font-size: 14px; font-weight: 600; color: var(--blue-dark); }
-    .tx-date { font-size: 12px; color: var(--subtle); }
     .tx-comment { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 2px; }
     .tx-amount { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 900; }
     .tx-amount.køb { color: var(--blue-main); }
     .tx-amount.forbrug { color: var(--purple); }
     .tx-actions { display: flex; align-items: center; gap: 6px; }
 
-    /* ── Tags ── */
-    .tag {
-      display: inline-block; padding: 2px 9px; border-radius: 20px;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
-    }
+    .tag { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; }
     .tag.køb { background: #dbeafe; color: #1e40af; }
     .tag.forbrug { background: #ede9fe; color: #5b21b6; }
 
-    /* ── Form fields ── */
-    label.field-label {
-      display: block; font-size: 12px; font-weight: 700;
-      letter-spacing: 0.8px; text-transform: uppercase;
-      color: var(--blue-dark); margin-bottom: 6px;
-    }
-    input[type=text], input[type=number], input[type=date], select {
-      width: 100%; padding: 12px 14px;
-      border-radius: 10px; border: 1.5px solid var(--blue-light);
-      font-family: 'Lora', Georgia, serif; font-size: 15px; color: var(--text);
-      background: var(--blue-pale); outline: none;
-      -webkit-appearance: none; appearance: none;
-    }
+    label.field-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue-dark); margin-bottom: 6px; }
+    input[type=text], input[type=number], input[type=date], select { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1.5px solid var(--blue-light); font-family: 'Lora', Georgia, serif; font-size: 15px; color: var(--text); background: var(--blue-pale); outline: none; -webkit-appearance: none; appearance: none; }
     input:focus, select:focus { border-color: var(--blue-main); }
     .field { margin-bottom: 14px; }
-    .field:last-of-type { margin-bottom: 0; }
 
-    /* ── Buttons ── */
-    .btn {
-      display: inline-block; padding: 14px 24px;
-      border-radius: 12px; border: none; cursor: pointer;
-      font-family: 'Lora', Georgia, serif; font-size: 16px; font-weight: 700;
-      transition: opacity 0.15s, background 0.2s;
-      width: 100%; text-align: center;
-    }
+    .btn { display: inline-block; padding: 14px 24px; border-radius: 12px; border: none; cursor: pointer; font-family: 'Lora', Georgia, serif; font-size: 16px; font-weight: 700; transition: opacity 0.15s, background 0.2s; width: 100%; text-align: center; }
     .btn-primary { background: var(--blue-main); color: white; }
     .btn-primary:active { opacity: 0.85; }
-    .btn-primary.success { background: var(--green); }
     .btn-secondary { background: var(--blue-bg); color: var(--blue-dark); font-size: 14px; padding: 10px 18px; }
     .btn-danger-soft { background: #fee2e2; color: #dc2626; font-size: 13px; padding: 5px 12px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Lora', serif; }
     .btn:disabled { opacity: 0.45; }
-    .btn-back {
-      background: none; border: none; color: var(--blue-main);
-      font-family: 'Lora', serif; font-size: 15px; cursor: pointer;
-      padding: 0 0 4px 0; display: flex; align-items: center; gap: 4px;
-    }
-    .btn-icon {
-      background: var(--blue-bg); border: none; border-radius: 8px;
-      cursor: pointer; color: var(--blue-main); font-size: 14px;
-      padding: 5px 8px; line-height: 1;
-    }
-    .btn-icon-del {
-      background: none; border: none; cursor: pointer;
-      color: #cbd5e1; font-size: 16px; padding: 4px; line-height: 1;
-    }
+    .btn-back { background: none; border: none; color: var(--blue-main); font-family: 'Lora', serif; font-size: 15px; cursor: pointer; padding: 0 0 4px 0; display: flex; align-items: center; gap: 4px; }
+    .btn-icon { background: var(--blue-bg); border: none; border-radius: 8px; cursor: pointer; color: var(--blue-main); font-size: 14px; padding: 5px 8px; line-height: 1; }
+    .btn-icon-del { background: none; border: none; cursor: pointer; color: #cbd5e1; font-size: 16px; padding: 4px; line-height: 1; }
 
-    /* ── Modal overlay ── */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(15,30,60,0.5);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 100; padding: 16px;
-    }
-    .modal {
-      background: var(--white); border-radius: 20px;
-      padding: 26px 22px; width: 100%; max-width: 420px;
-      box-shadow: 0 8px 48px rgba(30,111,191,0.18);
-      max-height: 90vh; overflow-y: auto;
-    }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(15,30,60,0.5); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
+    .modal { background: var(--white); border-radius: 20px; padding: 26px 22px; width: 100%; max-width: 420px; box-shadow: 0 8px 48px rgba(30,111,191,0.18); max-height: 90vh; overflow-y: auto; }
     .modal-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--blue-dark); margin-bottom: 18px; }
     .modal-actions { display: flex; gap: 10px; margin-top: 16px; }
     .modal-actions .btn { flex: 1; }
 
-    /* ── Filter section ── */
     .filter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .filter-full { grid-column: 1 / -1; }
 
-    /* ── Gym list ── */
-    .gym-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 0; border-bottom: 1px solid var(--border);
-    }
+    .gym-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
     .gym-row:last-child { border-bottom: none; }
     .gym-name { font-size: 15px; color: var(--text); }
     .gym-add-row { display: flex; gap: 8px; margin-top: 14px; }
     .gym-add-row input { flex: 1; }
-    .gym-add-btn {
-      background: var(--blue-main); color: white; border: none;
-      border-radius: 10px; padding: 0 18px; font-size: 20px; cursor: pointer;
-    }
+    .gym-add-btn { background: var(--blue-main); color: white; border: none; border-radius: 10px; padding: 0 18px; font-size: 20px; cursor: pointer; }
 
-    /* ── Utility ── */
     .empty { color: var(--subtle); font-size: 14px; text-align: center; padding: 24px 0; }
     .hidden { display: none !important; }
     .mt8 { margin-top: 8px; }
     .mt12 { margin-top: 12px; }
 
-    /* Fade-in animation */
+    .spinner { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; }
+    .spinner-ring { width: 40px; height: 40px; border: 3px solid var(--blue-light); border-top-color: var(--blue-main); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .view { animation: fadeUp 0.2s ease; }
+
+    .sync-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-left: 6px; vertical-align: middle; }
+    .sync-dot.ok { background: var(--green); }
+    .sync-dot.syncing { background: var(--blue-mid); animation: pulse 1s infinite; }
+    .sync-dot.err { background: var(--red); }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
   </style>
 </head>
 <body>
@@ -264,47 +144,35 @@
           <path d="M55 38 Q60 34 65 38" stroke="#7a4a00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
         </svg>
         <div>
-          <div class="header-title">Klippekort</div>
+          <div class="header-title">Klippekort <span class="sync-dot syncing" id="sync-dot"></span></div>
           <div class="header-sub">Bouldering Tracker</div>
         </div>
       </div>
       <div class="header-balance">
-        <div class="header-balance-num" id="header-balance">0</div>
+        <div class="header-balance-num" id="header-balance">–</div>
         <div class="header-balance-label">klip</div>
       </div>
     </div>
   </header>
-
-  <main id="main"></main>
+  <main id="main">
+    <div class="spinner">
+      <div class="spinner-ring"></div>
+      <div style="font-size:14px;color:var(--muted)">Forbinder til Firebase...</div>
+    </div>
+  </main>
 </div>
 
 <!-- Edit Modal -->
 <div class="modal-overlay hidden" id="edit-modal" onclick="closeEditModal(event)">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-title">✏️ Redigér transaktion</div>
-    <div class="field">
-      <label class="field-label">Type</label>
-      <select id="edit-type">
-        <option value="køb">Køb</option>
-        <option value="forbrug">Forbrug</option>
-      </select>
+    <div class="field"><label class="field-label">Type</label>
+      <select id="edit-type"><option value="køb">Køb</option><option value="forbrug">Forbrug</option></select>
     </div>
-    <div class="field">
-      <label class="field-label">Dato</label>
-      <input type="date" id="edit-date" />
-    </div>
-    <div class="field">
-      <label class="field-label">Gym</label>
-      <select id="edit-gym"></select>
-    </div>
-    <div class="field">
-      <label class="field-label">Antal klip</label>
-      <input type="number" id="edit-amount" min="1" />
-    </div>
-    <div class="field">
-      <label class="field-label">Kommentar (valgfri)</label>
-      <input type="text" id="edit-comment" placeholder="f.eks. Sommerudsalg" />
-    </div>
+    <div class="field"><label class="field-label">Dato</label><input type="date" id="edit-date" /></div>
+    <div class="field"><label class="field-label">Gym</label><select id="edit-gym"></select></div>
+    <div class="field"><label class="field-label">Antal klip</label><input type="number" id="edit-amount" min="1" /></div>
+    <div class="field"><label class="field-label">Kommentar (valgfri)</label><input type="text" id="edit-comment" placeholder="f.eks. Sommerudsalg" /></div>
     <div class="modal-actions">
       <button class="btn btn-secondary" onclick="document.getElementById('edit-modal').classList.add('hidden')">Annullér</button>
       <button class="btn btn-primary" id="edit-save-btn" onclick="saveEdit()">Gem ændringer</button>
@@ -312,51 +180,120 @@
   </div>
 </div>
 
-<script>
-// ── Storage ──────────────────────────────────────────────────────────────
-function load(key, fallback) {
-  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
-  catch { return fallback; }
-}
-function save(key, val) {
-  try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) { console.error(e); }
-}
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-// ── State ────────────────────────────────────────────────────────────────
-let transactions = load('bk_transactions', []);
-let gyms = load('bk_gyms', ['Boulders Copenhagen', 'Boulders Aarhus']);
+const firebaseConfig = {
+  apiKey: "AIzaSyCzQdun-gec-pHwEqmAVU7Z-QfrZ3f43zY",
+  authDomain: "klippekort-117b3.firebaseapp.com",
+  databaseURL: "https://klippekort-117b3-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "klippekort-117b3",
+  storageBucket: "klippekort-117b3.firebasestorage.app",
+  messagingSenderId: "411262617754",
+  appId: "1:411262617754:web:94cd65814284f483793723"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getDatabase(fbApp);
+
+// ── State ─────────────────────────────────────────────────────────────────
+let transactions = [];
+let gyms = [];
 let currentView = 'home';
 let editingId = null;
+let logFilters = { type: 'alle', gym: 'alle', from: '', to: '', comment: '' };
 
-// ── Helpers ──────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────
 function today() { return new Date().toISOString().slice(0, 10); }
 function fmtDate(d) {
   if (!d) return '';
   const [y, m, day] = d.split('-');
   return `${day}.${m}.${y}`;
 }
-function uid() { return Math.random().toString(36).slice(2, 10); }
-function balance() {
-  return transactions.reduce((s, t) => t.type === 'køb' ? s + t.amount : s - t.amount, 0);
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function balance() { return transactions.reduce((s,t) => t.type==='køb' ? s+t.amount : s-t.amount, 0); }
+function sortedTx(desc=false) {
+  return [...transactions].sort((a,b) => desc ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date));
 }
-function sortedTx() {
-  return [...transactions].sort((a, b) => a.date.localeCompare(b.date));
+function setSyncDot(state) {
+  const dot = document.getElementById('sync-dot');
+  if (dot) dot.className = 'sync-dot ' + state;
 }
 function updateHeader() {
   const b = balance();
   const el = document.getElementById('header-balance');
-  el.textContent = b;
-  el.classList.toggle('low', b <= 2);
+  if (el) { el.textContent = b; el.classList.toggle('low', b <= 2); }
 }
 
-// ── Router ───────────────────────────────────────────────────────────────
-function navigate(view) {
-  currentView = view;
-  render();
+// ── Firebase helpers ──────────────────────────────────────────────────────
+async function fbSaveTx(tx) {
+  setSyncDot('syncing');
+  try { await set(ref(db, `transactions/${tx.id}`), tx); setSyncDot('ok'); }
+  catch(e) { console.error(e); setSyncDot('err'); }
 }
+async function fbDeleteTx(id) {
+  setSyncDot('syncing');
+  try { await remove(ref(db, `transactions/${id}`)); setSyncDot('ok'); }
+  catch(e) { console.error(e); setSyncDot('err'); }
+}
+async function fbSaveGyms(g) {
+  setSyncDot('syncing');
+  try { await set(ref(db, 'gyms'), g); setSyncDot('ok'); }
+  catch(e) { console.error(e); setSyncDot('err'); }
+}
+
+// ── Migration fra localStorage ────────────────────────────────────────────
+async function migrateFromLocalStorage() {
+  try {
+    const oldTx = localStorage.getItem('bk_transactions');
+    const oldGyms = localStorage.getItem('bk_gyms');
+    if (!oldTx && !oldGyms) return;
+    const txArr = oldTx ? JSON.parse(oldTx) : [];
+    const gymArr = oldGyms ? JSON.parse(oldGyms) : [];
+    if (txArr.length === 0 && gymArr.length === 0) return;
+    const snap = await get(ref(db, 'transactions'));
+    if (snap.exists()) return;
+    if (confirm(`Vi har fundet ${txArr.length} gamle transaktioner på denne enhed.\nVil du flytte dem til Firebase nu?`)) {
+      for (const tx of txArr) {
+        if (!tx.id) tx.id = uid();
+        await set(ref(db, `transactions/${tx.id}`), tx);
+      }
+      if (gymArr.length > 0) await set(ref(db, 'gyms'), gymArr);
+      localStorage.removeItem('bk_transactions');
+      localStorage.removeItem('bk_gyms');
+      localStorage.removeItem('bk_last_backup');
+      alert('✓ Dine gamle data er nu flyttet til Firebase!');
+    }
+  } catch(e) { console.error('Migration error:', e); }
+}
+
+// ── Realtime listener ─────────────────────────────────────────────────────
+function startListening() {
+  onValue(ref(db, 'transactions'), (snap) => {
+    transactions = snap.val() ? Object.values(snap.val()) : [];
+    updateHeader(); render(); setSyncDot('ok');
+  });
+  onValue(ref(db, 'gyms'), (snap) => {
+    gyms = snap.val() || ['Boulders Copenhagen', 'Boulders Aarhus'];
+    render();
+  });
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────
+(async () => {
+  setSyncDot('syncing');
+  await migrateFromLocalStorage();
+  startListening();
+})();
+
+// ── Router ────────────────────────────────────────────────────────────────
+window.navigate = (view) => { currentView = view; render(); };
+
 function render() {
   updateHeader();
   const main = document.getElementById('main');
+  if (!main) return;
   if (currentView === 'home') main.innerHTML = renderHome();
   else if (currentView === 'forbrug') main.innerHTML = renderInput('forbrug');
   else if (currentView === 'køb') main.innerHTML = renderInput('køb');
@@ -364,52 +301,23 @@ function render() {
   else if (currentView === 'settings') main.innerHTML = renderSettings();
 }
 
-// ── Monkey SVG ───────────────────────────────────────────────────────────
-function monkeySVG(size=40) {
-  return `<svg width="${size}" height="${size}" viewBox="0 0 100 100" fill="none">
-    <ellipse cx="18" cy="55" rx="12" ry="14" fill="#c8860a"/>
-    <ellipse cx="18" cy="55" rx="7" ry="9" fill="#f4a93a"/>
-    <ellipse cx="82" cy="55" rx="12" ry="14" fill="#c8860a"/>
-    <ellipse cx="82" cy="55" rx="7" ry="9" fill="#f4a93a"/>
-    <ellipse cx="50" cy="50" rx="30" ry="32" fill="#c8860a"/>
-    <ellipse cx="50" cy="60" rx="20" ry="18" fill="#f4c47a"/>
-    <ellipse cx="40" cy="45" rx="6" ry="7" fill="white"/>
-    <ellipse cx="60" cy="45" rx="6" ry="7" fill="white"/>
-    <ellipse cx="41" cy="46" rx="3.5" ry="4" fill="#1a1a1a"/>
-    <ellipse cx="61" cy="46" rx="3.5" ry="4" fill="#1a1a1a"/>
-    <ellipse cx="42" cy="45" rx="1.2" ry="1.2" fill="white"/>
-    <ellipse cx="62" cy="45" rx="1.2" ry="1.2" fill="white"/>
-    <ellipse cx="50" cy="57" rx="7" ry="5" fill="#c8860a"/>
-    <circle cx="47" cy="56" r="2" fill="#7a4a00"/>
-    <circle cx="53" cy="56" r="2" fill="#7a4a00"/>
-    <path d="M40 65 Q50 74 60 65" stroke="#7a4a00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-    <path d="M35 38 Q40 34 45 38" stroke="#7a4a00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-    <path d="M55 38 Q60 34 65 38" stroke="#7a4a00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-  </svg>`;
-}
-
-// ── Home ─────────────────────────────────────────────────────────────────
+// ── Home ──────────────────────────────────────────────────────────────────
 function renderHome() {
   const b = balance();
-  const recent = [...sortedTx()].reverse().slice(0, 3);
+  const recent = sortedTx(true).slice(0, 3);
   const recentHTML = recent.length === 0 ? '' : `
     <div class="card">
       <div class="section-label">Seneste aktivitet</div>
       ${recent.map(t => `
         <div class="tx-row">
           <div class="tx-meta">
-            <div class="tx-top">
-              <span class="tag ${t.type}">${t.type}</span>
-              <span class="tx-gym">${t.gym}</span>
-            </div>
             <div class="tx-date">${fmtDate(t.date)}</div>
+            <div class="tx-top"><span class="tag ${t.type}">${t.type}</span><span class="tx-gym">${t.gym}</span></div>
             ${t.comment ? `<div class="tx-comment">${t.comment}</div>` : ''}
           </div>
           <div class="tx-amount ${t.type}">${t.type==='køb'?'+':'-'}${t.amount}</div>
-        </div>
-      `).join('')}
+        </div>`).join('')}
     </div>`;
-
   return `<div class="view">
     <div class="hero">
       <div class="hero-label">Saldo</div>
@@ -418,28 +326,16 @@ function renderHome() {
       ${b <= 2 ? '<div class="hero-warn">⚠️ Snart tomt – husk at købe flere klip!</div>' : ''}
     </div>
     <div class="nav-grid">
-      <button class="nav-btn" onclick="navigate('log')">
-        <span class="nav-btn-label">📋 Historik</span>
-        <span class="nav-btn-desc">Se alle transaktioner</span>
-      </button>
-      <button class="nav-btn" onclick="navigate('forbrug')">
-        <span class="nav-btn-label">🧗 Forbrug</span>
-        <span class="nav-btn-desc">Brug et klip</span>
-      </button>
-      <button class="nav-btn" onclick="navigate('køb')">
-        <span class="nav-btn-label">🛒 Køb</span>
-        <span class="nav-btn-desc">Køb klip</span>
-      </button>
-      <button class="nav-btn" onclick="navigate('settings')">
-        <span class="nav-btn-label">⚙️ Indstillinger</span>
-        <span class="nav-btn-desc">Administrér gyms</span>
-      </button>
+      <button class="nav-btn" onclick="navigate('log')"><span class="nav-btn-label">📋 Historik</span><span class="nav-btn-desc">Se alle transaktioner</span></button>
+      <button class="nav-btn" onclick="navigate('forbrug')"><span class="nav-btn-label">🧗 Forbrug</span><span class="nav-btn-desc">Brug et klip</span></button>
+      <button class="nav-btn" onclick="navigate('køb')"><span class="nav-btn-label">🛒 Køb</span><span class="nav-btn-desc">Køb klip</span></button>
+      <button class="nav-btn" onclick="navigate('settings')"><span class="nav-btn-label">⚙️ Indstillinger</span><span class="nav-btn-desc">Administrér gyms</span></button>
     </div>
     ${recentHTML}
   </div>`;
 }
 
-// ── Input (forbrug / køb) ────────────────────────────────────────────────
+// ── Input ─────────────────────────────────────────────────────────────────
 function renderInput(type) {
   const isKøb = type === 'køb';
   const accent = isKøb ? '#1e6fbf' : '#7c3aed';
@@ -447,64 +343,39 @@ function renderInput(type) {
   const noGyms = gyms.length === 0
     ? '<div style="color:#ef4444;font-size:13px">Ingen gyms – tilføj dem i Indstillinger.</div>'
     : `<select id="inp-gym">${gymOptions}</select>`;
-
   return `<div class="view">
     <button class="btn-back" onclick="navigate('home')">← Tilbage</button>
     <div class="card">
       <div class="card-title" style="color:${accent}">${isKøb ? '🛒 Registrér køb' : '🧗 Registrér forbrug'}</div>
-      <div class="field">
-        <label class="field-label">Dato</label>
-        <input type="date" id="inp-date" value="${today()}" />
-      </div>
-      <div class="field">
-        <label class="field-label">Gym</label>
-        ${noGyms}
-      </div>
-      <div class="field">
-        <label class="field-label">Antal klip</label>
-        <input type="number" id="inp-amount" min="1" value="${isKøb ? '' : '1'}" placeholder="${isKøb ? 'f.eks. 10' : '1'}" />
-      </div>
-      <div class="field">
-        <label class="field-label">Kommentar (valgfri)</label>
-        <input type="text" id="inp-comment" placeholder="f.eks. Sommerudsalg" />
-      </div>
-      <div class="mt12">
-        <button class="btn btn-primary" id="inp-save-btn" style="background:${accent}" onclick="saveInput('${type}')">
-          Gem ${isKøb ? 'køb' : 'forbrug'}
-        </button>
-      </div>
+      <div class="field"><label class="field-label">Dato</label><input type="date" id="inp-date" value="${today()}" /></div>
+      <div class="field"><label class="field-label">Gym</label>${noGyms}</div>
+      <div class="field"><label class="field-label">Antal klip</label><input type="number" id="inp-amount" min="1" value="${isKøb ? '' : '1'}" placeholder="${isKøb ? 'f.eks. 10' : '1'}" /></div>
+      <div class="field"><label class="field-label">Kommentar (valgfri)</label><input type="text" id="inp-comment" placeholder="f.eks. Sommerudsalg" /></div>
+      <div class="mt12"><button class="btn btn-primary" id="inp-save-btn" style="background:${accent}" onclick="saveInput('${type}')">Gem ${isKøb ? 'køb' : 'forbrug'}</button></div>
     </div>
   </div>`;
 }
 
-function saveInput(type) {
+window.saveInput = async (type) => {
   const date = document.getElementById('inp-date').value;
   const gymEl = document.getElementById('inp-gym');
   const gym = gymEl ? gymEl.value : '';
   const amount = parseFloat(document.getElementById('inp-amount').value);
   const comment = document.getElementById('inp-comment').value.trim();
   if (!gym || !amount || amount <= 0) return;
-
-  transactions.push({ id: uid(), type, date, gym, amount, comment });
-  transactions.sort((a, b) => a.date.localeCompare(b.date));
-  save('bk_transactions', transactions);
-
   const btn = document.getElementById('inp-save-btn');
-  btn.textContent = '✓ Gemt!';
-  btn.style.background = '#22c55e';
-  btn.disabled = true;
+  btn.textContent = 'Gemmer...'; btn.disabled = true;
+  await fbSaveTx({ id: uid(), type, date, gym, amount, comment });
+  btn.textContent = '✓ Gemt!'; btn.style.background = '#22c55e';
   setTimeout(() => navigate(currentView), 1200);
-}
+};
 
-// ── Log ──────────────────────────────────────────────────────────────────
-let logFilters = { type: 'alle', gym: 'alle', from: '', to: '', comment: '' };
-
+// ── Log ───────────────────────────────────────────────────────────────────
 function renderLog() {
   const allGyms = [...new Set(transactions.map(t => t.gym))];
   const gymOpts = ['alle', ...allGyms].map(g => `<option value="${g}" ${logFilters.gym===g?'selected':''}>${g==='alle'?'Alle':g}</option>`).join('');
   const typeOpts = ['alle','køb','forbrug'].map(v => `<option value="${v}" ${logFilters.type===v?'selected':''}>${v==='alle'?'Alle':v.charAt(0).toUpperCase()+v.slice(1)}</option>`).join('');
-
-  const filtered = sortedTx().filter(t => {
+  const filtered = sortedTx(true).filter(t => {
     if (logFilters.type !== 'alle' && t.type !== logFilters.type) return false;
     if (logFilters.gym !== 'alle' && t.gym !== logFilters.gym) return false;
     if (logFilters.from && t.date < logFilters.from) return false;
@@ -512,19 +383,14 @@ function renderLog() {
     if (logFilters.comment && !(t.comment||'').toLowerCase().includes(logFilters.comment.toLowerCase())) return false;
     return true;
   });
-
   const hasFilter = logFilters.type!=='alle' || logFilters.gym!=='alle' || logFilters.from || logFilters.to || logFilters.comment;
-
   const rows = filtered.length === 0
     ? `<div class="empty">Ingen transaktioner matcher filteret.</div>`
     : filtered.map(t => `
       <div class="tx-row">
         <div class="tx-meta">
-          <div class="tx-top">
-            <span class="tag ${t.type}">${t.type}</span>
-            <span class="tx-gym">${t.gym}</span>
-          </div>
           <div class="tx-date">${fmtDate(t.date)}</div>
+          <div class="tx-top"><span class="tag ${t.type}">${t.type}</span><span class="tx-gym">${t.gym}</span></div>
           ${t.comment ? `<div class="tx-comment">${t.comment}</div>` : ''}
         </div>
         <div class="tx-actions">
@@ -532,34 +398,17 @@ function renderLog() {
           <button class="btn-icon" onclick="openEdit('${t.id}')">✏️</button>
           <button class="btn-icon-del" onclick="deleteTx('${t.id}')">✕</button>
         </div>
-      </div>
-    `).join('');
-
+      </div>`).join('');
   return `<div class="view">
     <button class="btn-back" onclick="navigate('home')">← Tilbage</button>
     <div class="card">
       <div class="section-label">Filter</div>
       <div class="filter-grid">
-        <div>
-          <label class="field-label">Type</label>
-          <select onchange="setFilter('type',this.value)">${typeOpts}</select>
-        </div>
-        <div>
-          <label class="field-label">Gym</label>
-          <select onchange="setFilter('gym',this.value)">${gymOpts}</select>
-        </div>
-        <div>
-          <label class="field-label">Fra dato</label>
-          <input type="date" value="${logFilters.from}" onchange="setFilter('from',this.value)" />
-        </div>
-        <div>
-          <label class="field-label">Til dato</label>
-          <input type="date" value="${logFilters.to}" onchange="setFilter('to',this.value)" />
-        </div>
-        <div class="filter-full">
-          <label class="field-label">Kommentar</label>
-          <input type="text" value="${logFilters.comment}" placeholder="Søg i kommentarer..." oninput="setFilter('comment',this.value)" />
-        </div>
+        <div><label class="field-label">Type</label><select onchange="setFilter('type',this.value)">${typeOpts}</select></div>
+        <div><label class="field-label">Gym</label><select onchange="setFilter('gym',this.value)">${gymOpts}</select></div>
+        <div><label class="field-label">Fra dato</label><input type="date" value="${logFilters.from}" onchange="setFilter('from',this.value)" /></div>
+        <div><label class="field-label">Til dato</label><input type="date" value="${logFilters.to}" onchange="setFilter('to',this.value)" /></div>
+        <div class="filter-full"><label class="field-label">Kommentar</label><input type="text" value="${logFilters.comment}" placeholder="Søg i kommentarer..." oninput="setFilter('comment',this.value)" /></div>
       </div>
       ${hasFilter ? `<div class="mt8"><button class="btn btn-secondary" style="width:auto;padding:8px 16px;font-size:13px" onclick="clearFilters()">Ryd filter</button></div>` : ''}
     </div>
@@ -570,23 +419,12 @@ function renderLog() {
   </div>`;
 }
 
-function setFilter(key, val) {
-  logFilters[key] = val;
-  render();
-}
-function clearFilters() {
-  logFilters = { type: 'alle', gym: 'alle', from: '', to: '', comment: '' };
-  render();
-}
-function deleteTx(id) {
-  if (!confirm('Slet denne transaktion?')) return;
-  transactions = transactions.filter(t => t.id !== id);
-  save('bk_transactions', transactions);
-  render();
-}
+window.setFilter = (key, val) => { logFilters[key] = val; render(); };
+window.clearFilters = () => { logFilters = { type:'alle', gym:'alle', from:'', to:'', comment:'' }; render(); };
+window.deleteTx = async (id) => { if (!confirm('Slet denne transaktion?')) return; await fbDeleteTx(id); };
 
-// ── Edit modal ───────────────────────────────────────────────────────────
-function openEdit(id) {
+// ── Edit modal ────────────────────────────────────────────────────────────
+window.openEdit = (id) => {
   editingId = id;
   const t = transactions.find(x => x.id === id);
   if (!t) return;
@@ -598,44 +436,29 @@ function openEdit(id) {
   gymSel.innerHTML = gyms.map(g => `<option value="${g}" ${g===t.gym?'selected':''}>${g}</option>`).join('');
   if (!gyms.includes(t.gym)) gymSel.innerHTML += `<option value="${t.gym}" selected>${t.gym}</option>`;
   document.getElementById('edit-modal').classList.remove('hidden');
-}
-function closeEditModal(e) {
-  if (e.target === document.getElementById('edit-modal'))
-    document.getElementById('edit-modal').classList.add('hidden');
-}
-function saveEdit() {
+};
+window.closeEditModal = (e) => { if (e.target === document.getElementById('edit-modal')) document.getElementById('edit-modal').classList.add('hidden'); };
+window.saveEdit = async () => {
   const type = document.getElementById('edit-type').value;
   const date = document.getElementById('edit-date').value;
   const gym = document.getElementById('edit-gym').value;
   const amount = parseFloat(document.getElementById('edit-amount').value);
   const comment = document.getElementById('edit-comment').value.trim();
   if (!gym || !amount || amount <= 0) return;
-
-  transactions = transactions.map(t => t.id === editingId ? { ...t, type, date, gym, amount, comment } : t);
-  transactions.sort((a, b) => a.date.localeCompare(b.date));
-  save('bk_transactions', transactions);
-  document.getElementById('edit-modal').classList.add('hidden');
-
   const btn = document.getElementById('edit-save-btn');
-  btn.textContent = '✓ Gemt!';
-  setTimeout(() => { btn.textContent = 'Gem ændringer'; render(); }, 800);
-  render();
-}
+  btn.textContent = 'Gemmer...'; btn.disabled = true;
+  await fbSaveTx({ id: editingId, type, date, gym, amount, comment });
+  document.getElementById('edit-modal').classList.add('hidden');
+  btn.textContent = 'Gem ændringer'; btn.disabled = false;
+};
 
-// ── Settings ─────────────────────────────────────────────────────────────
+// ── Settings ──────────────────────────────────────────────────────────────
 function renderSettings() {
   const gymRows = gyms.map(g => `
     <div class="gym-row">
       <span class="gym-name">${g}</span>
       <button class="btn-danger-soft" onclick="removeGym('${g}')">Slet</button>
-    </div>
-  `).join('');
-
-  const lastBackup = load('bk_last_backup', null);
-  const backupInfo = lastBackup
-    ? `<div style="font-size:12px;color:var(--muted);margin-top:6px">Seneste backup: ${lastBackup}</div>`
-    : `<div style="font-size:12px;color:var(--muted);margin-top:6px">Ingen backup taget endnu</div>`;
-
+    </div>`).join('');
   return `<div class="view">
     <button class="btn-back" onclick="navigate('home')">← Tilbage</button>
     <div class="card">
@@ -647,87 +470,31 @@ function renderSettings() {
         <button class="gym-add-btn" onclick="addGym()">+</button>
       </div>
     </div>
-
     <div class="card">
       <div class="section-label">Sikkerhedskopi</div>
       <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6">
-        Gem en kopi af dine data som fil – nyttig ved telefon-skift eller opdatering af appen.
+        Dine data er gemt sikkert i Firebase. Du kan også downloade en lokal backup.
       </p>
-      <button class="btn btn-primary" onclick="exportData()" style="margin-bottom:10px">
-        ⬇️ Eksportér data
-      </button>
-      ${backupInfo}
-      <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border)">
-        <p style="font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.6">
-          Gendan data fra en tidligere backup-fil.
-        </p>
-        <label class="btn btn-secondary" style="display:block;text-align:center;cursor:pointer">
-          ⬆️ Importér data
-          <input type="file" accept=".json" onchange="importData(event)" style="display:none" />
-        </label>
-      </div>
+      <button class="btn btn-primary" onclick="exportData()">⬇️ Download backup</button>
     </div>
   </div>`;
 }
 
-function addGym() {
+window.addGym = async () => {
   const el = document.getElementById('new-gym-input');
   const name = el.value.trim();
   if (!name || gyms.includes(name)) return;
-  gyms.push(name);
-  save('bk_gyms', gyms);
-  render();
-}
-function removeGym(name) {
-  gyms = gyms.filter(g => g !== name);
-  save('bk_gyms', gyms);
-  render();
-}
-
-// ── Export ────────────────────────────────────────────────────────────────
-function exportData() {
-  const d = new Date();
-  const dateStr = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
+  await fbSaveGyms([...gyms, name]);
+};
+window.removeGym = async (name) => { await fbSaveGyms(gyms.filter(g => g !== name)); };
+window.exportData = () => {
   const data = { transactions, gyms, exportedAt: new Date().toISOString() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = `klippekort-backup.json`;
-  a.click();
+  a.href = url; a.download = 'klippekort-backup.json'; a.click();
   URL.revokeObjectURL(url);
-  save('bk_last_backup', dateStr);
-  render();
-}
-
-// ── Import ────────────────────────────────────────────────────────────────
-function importData(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const data = JSON.parse(e.target.result);
-      if (!data.transactions || !data.gyms) {
-        alert('Filen ser ikke ud til at være en gyldig backup-fil.');
-        return;
-      }
-      if (!confirm(`Vil du gendanne ${data.transactions.length} transaktioner og ${data.gyms.length} gyms?\n\nDine nuværende data vil blive erstattet.`)) return;
-      transactions = data.transactions;
-      gyms = data.gyms;
-      save('bk_transactions', transactions);
-      save('bk_gyms', gyms);
-      alert('✓ Data er gendannet!');
-      render();
-    } catch {
-      alert('Kunne ikke læse filen. Er du sikker på, det er en klippekort-backup?');
-    }
-  };
-  reader.readAsText(file);
-}
-
-// ── Boot ─────────────────────────────────────────────────────────────────
-render();
+};
 </script>
 </body>
 </html>
